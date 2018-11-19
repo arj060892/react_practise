@@ -1,21 +1,26 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { Component } from "react";
+import AppStackNavigator from "./src/Router.js";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Home Screen</Text>
-      </View>
-    );
-  }
-}
+export default createAppContainer(AppStackNavigator);
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen
-  }
-});
+// import React from "react";
+// import { View, Text } from "react-native";
 
-export default createAppContainer(AppNavigator);
+// class HomeScreen extends React.Component {
+//   render() {
+//     return (
+//       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//         <Text>Home sd Screen</Text>
+//       </View>
+//     );
+//   }
+// }
+
+// const AppNavigator = createStackNavigator({
+//   Home: {
+//     screen: HomeScreen
+//   }
+// });
+
+// export default createAppContainer(AppNavigator);
