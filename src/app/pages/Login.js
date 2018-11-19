@@ -21,7 +21,8 @@ export default class LoginScreen extends Component {
       usernameValid: true,
       passwordValid: true,
       userValid: false,
-      isLoggingIn: false
+      isLoggingIn: false,
+      loginErrorMessage: ""
     };
   }
 
@@ -32,9 +33,32 @@ export default class LoginScreen extends Component {
       this.setState({ isPasswordFocused: true });
     }
   }
-  userLogin() {
+  userLogin = async () => {
     this.setState({ isLoggingIn: true });
-  }
+    fetch("https://data.advance88.hasura-app.io/v1/query", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        console.warn(responseJson);
+        this.setState({ isLoggingIn: false, loginErrorMessage: "" });
+      })
+      .catch(error => {
+        console.error(error);
+        this.setState({
+          isLoggingIn: false,
+          loginErrorMessage: "Invalid Credentials"
+        });
+      });
+  };
+
   validate(text, type) {
     usernameRegx = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     passwordRegx = /^\S+$/;
@@ -91,6 +115,9 @@ export default class LoginScreen extends Component {
           ]}
         />
         {!this.state.passwordValid ? <Text>Password invalid!</Text> : null}
+        {this.state.loginErrorMessage != "" ? (
+          <Text>{this.state.loginErrorMessage}</Text>
+        ) : null}
 
         {this.state.isLoggingIn ? (
           <ActivityIndicator
