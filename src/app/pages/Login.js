@@ -64,13 +64,13 @@ export default class LoginScreen extends Component {
     passwordRegx = /^\S+$/;
     if (type == "username") {
       if (usernameRegx.test(text)) {
-        this.setState({ usernameValid: true });
+        this.setState({ usernameValid: true,username:text });
       } else {
         this.setState({ usernameValid: false });
       }
     } else if (type == "password") {
       if (passwordRegx.test(text)) {
-        this.setState({ passwordValid: true });
+        this.setState({ passwordValid: true ,password:text});
       } else {
         this.setState({ passwordValid: false });
       }
