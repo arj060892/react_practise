@@ -62,6 +62,7 @@ export default class RegisterScreen extends Component {
       .then(responseJson => {
         console.warn(responseJson);
         this.setState({ isLoggingIn: false, registerErrorMessage: "" });
+        this.props.navigation.navigate('Dashboard')
       })
       .catch(error => {
         this.setState({

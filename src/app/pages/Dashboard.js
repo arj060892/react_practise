@@ -108,7 +108,6 @@ export default class DashboardScreen extends React.Component {
               <Text style={styles.getMoreText}>Get more slots and discount</Text>
               <ScrollView directionalLockEnabled={false} horizontal={true}>
                 <View style={{ flexDirection: 'row' }}>
-
                   <View style={[styles.paddingVertical, styles.slotWidth]}>
                     <View style={[styles.morningSlot, styles.paddingHorizontal16]}>
                       <Text style={{ textAlign: 'right', lineHeight: 30 }}>

@@ -49,6 +49,7 @@ export default class LoginScreen extends Component {
       .then(responseJson => {
         console.warn(responseJson);
         this.setState({ isLoggingIn: false, loginErrorMessage: "" });
+        this.props.navigation.navigate('Dashboard')
       })
       .catch(error => {
         console.error(error);
